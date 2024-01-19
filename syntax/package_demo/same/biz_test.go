@@ -1,1 +1,1 @@
-package same
+package same_test
