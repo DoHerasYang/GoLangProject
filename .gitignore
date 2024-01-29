@@ -1,2 +1,3 @@
 # ignore a whole directory
 .DS_Store
+.idea/
