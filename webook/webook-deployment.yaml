@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webook-doheras-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: webook-doheras
+  template:
+    metadata:
+      labels:
+        # selector-matchLabels same name
+        app: webook-doheras
+    spec:
+      # Container in Pods
+      containers:
+        - name: webook-doheras
+          image: doheras/webook:v0.0.1
+          ports:
+            - containerPort: 8081 # change from 8080
+
+#  (base) doheras@DoHerass-MBP webook % kubectl apply -f webook-deployment.yaml
+#  deployment.apps/webook-doheras-service created
+#  (base) doheras@DoHerass-MBP webook % kubectl get pods
+#  NAME                                     READY   STATUS              RESTARTS      AGE
+#  webook-doheras-service-dc9b6f487-j9vmm   0/1     RunContainerError   1 (12s ago)   14s
+#  webook-doheras-service-dc9b6f487-nmgc4   0/1     RunContainerError   1 (12s ago)   14s
+#  webook-doheras-service-dc9b6f487-tj9j2   0/1     RunContainerError   1 (12s ago)   14s
+#  (base) doheras@DoHerass-MBP webook % kubectl get deployment
+#  NAME                     READY   UP-TO-DATE   AVAILABLE   AGE
+#  webook-doheras-service   0/3     3

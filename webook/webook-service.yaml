@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: webook-doheras
+spec:
+  selector:
+    app: webook-doheras
+  ports:
+    - protocol: TCP
+      port: 88
+      targetPort: 8081 # change from 8080
+      name: http
+  type: ClusterIP  # Suitable for ingress controller
+
+#  (base) doheras@DoHerass-MBP webook % kubectl apply -f webook-service.yaml
+#  service/webook-doheras created
+#  (base) doheras@DoHerass-MBP webook % kubectl apply -f webook-service.yaml
+#  service/webook-doheras unchanged
+#  (base) doheras@DoHerass-MBP webook % kubectl get pods
+#  NAME                                     READY   STATUS    RESTARTS        AGE
+#  webook-doheras-service-dc9b6f487-j9vmm   1/1     Running   7 (5m53s ago)   11m
+#  webook-doheras-service-dc9b6f487-nmgc4   1/1     Running   7 (5m54s ago)   11m
+#  webook-doheras-service-dc9b6f487-tj9j2   1/1     Running   7 (6m3s ago)    11m
